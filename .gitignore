@@ -1,0 +1,7 @@
+node_modules/
+*.bntx
+*.bfres
+*.bwav
+*.bars
+*.rsizetable
+*.zs

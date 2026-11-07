@@ -1,0 +1,50 @@
+{
+  "name": "s2js",
+  "version": "0.1.0",
+  "description": "Read and write Nintendo Switch and Switch 2 file formats in plain JavaScript: BNTX textures, BFRES models, BWAV/BARS audio, RESTBL and Zstandard.",
+  "license": "Apache-2.0",
+  "author": "Spooks4576 (https://github.com/Spooks4576)",
+  "type": "module",
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./texture": "./src/texture/index.js",
+    "./model": "./src/model/index.js",
+    "./audio": "./src/audio/index.js",
+    "./restbl": "./src/restbl/index.js",
+    "./compression": "./src/compression/index.js",
+    "./image": "./src/image/index.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE",
+    "NOTICE"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [
+    "nintendo-switch",
+    "switch2",
+    "bntx",
+    "bfres",
+    "bwav",
+    "bars",
+    "restbl",
+    "astc",
+    "bc7",
+    "zstd",
+    "modding"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Spooks4576/S2JS.git"
+  },
+  "homepage": "https://github.com/Spooks4576/S2JS#readme"
+}

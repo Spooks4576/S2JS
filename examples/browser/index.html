@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>S2JS BNTX viewer</title>
+  <style>
+    body { font: 15px/1.5 system-ui, sans-serif; margin: 24px; background: #111; color: #eee; }
+    canvas { display: block; margin: 12px 0; max-width: 100%; background: repeating-conic-gradient(#333 0 25%, #222 0 50%) 0 0 / 16px 16px; }
+  </style>
+</head>
+<body>
+  <h1>S2JS BNTX viewer</h1>
+  <p>Pick a <code>.bntx</code> or <code>.bntx.zs</code> file. Everything runs in your browser.</p>
+  <input type="file" accept=".bntx,.zs">
+  <div id="out"></div>
+
+  <!-- Serve the S2JS folder over http (for example `npx serve .`) and open /examples/browser/. -->
+  <script type="module">
+    import { decodeBntx } from "../../src/index.js";
+
+    document.querySelector("input").addEventListener("change", async (event) => {
+      const out = document.querySelector("#out");
+      out.textContent = "";
+      const file = event.target.files[0];
+      try {
+        const bntx = decodeBntx(new Uint8Array(await file.arrayBuffer()));
+        out.append(`${bntx.platform} · ${bntx.format}`);
+        for (const image of bntx.images) {
+          const canvas = Object.assign(document.createElement("canvas"), { width: image.width, height: image.height, title: image.name });
+          canvas.getContext("2d").putImageData(new ImageData(new Uint8ClampedArray(image.rgba), image.width, image.height), 0, 0);
+          out.append(canvas);
+        }
+      } catch (error) {
+        out.textContent = error.reason || error.message;
+      }
+    });
+  </script>
+</body>
+</html>
