@@ -35,7 +35,7 @@ Without a bundler in the browser, import the files directly: `import { decodeBnt
 
 Every function takes a `Uint8Array` (a Node `Buffer` works too) or an `ArrayBuffer`. Files that end in `.zs` are decompressed for you, and the writers compress them again when the input was compressed.
 
-> **Node gotcha:** pass the `Buffer` from `readFileSync` directly. Do not pass `readFileSync(path).buffer`. Node keeps small files in a shared memory pool, so `.buffer` can contain other data before your file.
+> **For Node You May Want to:** pass the `Buffer` from `readFileSync` directly. Do not pass `readFileSync(path).buffer`. Node keeps small files in a shared memory pool, so `.buffer` can contain other data before your file.
 
 ### Textures
 
